@@ -1,0 +1,6 @@
+{
+  "name": "WW3 Live",
+  "description": "Live global conflict radar and news using real RSS data.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
