@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-orbitron: "Orbitron", sans-serif;
+  --font-mono: "Share Tech Mono", monospace;
+  --font-rajdhani: "Rajdhani", sans-serif;
+  --font-sans: "Inter", sans-serif;
+}
+
+html, body, #root {
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  background-color: #080c10;
+  color: #e8f4f8;
+  font-family: 'Rajdhani', sans-serif;
+}
+
+/* Map Dark Theme Reset */
+.leaflet-container {
+  background: #080c10 !important;
+}
+
+@keyframes radar-pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 0, 51, 0.7);
+  }
+  70% {
+    transform: scale(1.15);
+    box-shadow: 0 0 0 15px rgba(255, 0, 51, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 0, 51, 0);
+  }
+}
+
+.is-new-alert {
+  animation: radar-pulse 1s infinite cubic-bezier(0.66, 0, 0, 1) !important;
+  box-shadow: 0 0 12px rgba(255, 0, 51, 0.8), inset 0 0 8px rgba(255, 0, 51, 0.5) !important;
+  border-color: rgba(255, 0, 51, 1) !important;
+  background-color: rgba(255, 0, 51, 0.3) !important;
+}
+
+.map-layer-dark {
+  /* No filter needed for Carto Dark */
+}
+.map-layer-satellite {
+  filter: brightness(0.7) contrast(1.15) saturate(0.75);
+}
+
+/* Custom Leaflet overrides */
+.leaflet-control-zoom {
+  border: 1px solid rgba(30, 45, 61, 0.8) !important;
+  background: rgba(8, 12, 16, 0.9) !important;
+  border-radius: 4px !important;
+}
+.leaflet-control-zoom a {
+  background: transparent !important;
+  color: #7a9bb5 !important;
+  border-color: rgba(30, 45, 61, 0.8) !important;
+}
+.leaflet-control-zoom a:hover {
+  color: #00d4ff !important;
+  background: rgba(22, 30, 42, 0.9) !important;
+}
+.leaflet-control-attribution {
+  display: none !important;
+}
+
+/* Popup override */
+.leaflet-popup-content-wrapper {
+  background: rgba(15, 15, 20, 0.95) !important;
+  border: 1px solid rgba(34, 197, 94, 0.6) !important; /* neon green */
+  color: #f8fafc !important; /* very light gray / white */
+  box-shadow: 0 4px 16px rgba(34, 197, 94, 0.2) !important;
+  border-radius: 4px !important;
+}
+.leaflet-popup-tip-container {
+  display: none !important;
+}
+.leaflet-popup-content {
+  margin: 16px 20px !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 14px !important;
+  line-height: 1.6 !important;
+}
+.leaflet-popup-close-button {
+  color: #3d5a73 !important;
+  top: 6px !important;
+  right: 6px !important;
+}
+.leaflet-popup-close-button:hover {
+  color: #00d4ff !important;
+}
+
+@keyframes scanline {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 4px; }
+}
+.bg-scanline {
+  background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0, 0, 0, 0.05) 3px, rgba(0, 0, 0, 0.05) 4px);
+  animation: scanline 1s linear infinite;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(100vw); }
+  100% { transform: translateX(-100%); }
+}
+.animate-marquee {
+  animation: marquee 80s linear infinite;
+}
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+@keyframes scrollSponsors {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-scrollSponsors {
+  display: flex;
+  width: max-content;
+  animation: scrollSponsors 30s linear infinite;
+}
+.animate-scrollSponsors:hover {
+  animation-play-state: paused;
+}
+
+@layer utilities {
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-custom::-webkit-scrollbar {
+    width: 6px;
+  }
+  .scrollbar-custom::-webkit-scrollbar-track {
+    background: #05070a;
+  }
+  .scrollbar-custom::-webkit-scrollbar-thumb {
+    background: #1e293b;
+    border-radius: 3px;
+  }
+  .scrollbar-custom::-webkit-scrollbar-thumb:hover {
+    background: #334155;
+  }
+}
