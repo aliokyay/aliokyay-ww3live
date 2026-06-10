@@ -2666,7 +2666,7 @@ export default function App() {
                   </div>
                 )}
 
-               {activeModal === 'support' && (
+{activeModal === 'support' && (
   <div className="space-y-8 flex flex-col items-center justify-center p-8">
     <div className="text-center space-y-3">
       <h3 className="text-xl font-bold text-slate-100 uppercase tracking-widest">Fund the Radar</h3>
