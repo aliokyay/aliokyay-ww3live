@@ -2551,101 +2551,41 @@ export default function App() {
                     </div>
                   </div>
                 )}
-                
+
                 {activeModal === 'logistics' && (
                   <div className="space-y-6">
-                    <p className="text-sm text-slate-300 font-mono mb-3 leading-relaxed">{t.logisticsSummary}</p>
-                    <div className="grid grid-cols-1 lg:grid-cols-4 gap-5">
-                      <div className="lg:col-span-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-                        <div className="h-40 bg-[#05070a] border border-slate-700 rounded-lg overflow-hidden relative group">
-                          <span className="absolute top-2 left-2 z-[999] text-[10px] sm:text-[11px] font-bold text-slate-300 px-2 py-1 bg-black/80 border border-slate-800 rounded tracking-wider backdrop-blur pointer-events-none uppercase shadow-lg shadow-black/50 group-hover:text-white transition-colors">{t.brentOilLabel}</span>
-                          <TradingViewWidget key="oil" symbol="TVC:UKOIL" />
-                        </div>
-                        <div className="h-40 bg-[#05070a] border border-slate-700 rounded-lg overflow-hidden relative group">
-                          <span className="absolute top-2 left-2 z-[999] text-[10px] sm:text-[11px] font-bold text-slate-300 px-2 py-1 bg-black/80 border border-slate-800 rounded tracking-wider backdrop-blur pointer-events-none uppercase shadow-lg shadow-black/50 group-hover:text-white transition-colors">{t.silverLabel}</span>
-                          <TradingViewWidget key="silver" symbol="OANDA:XAGUSD" />
-                        </div>
-                        <div className="h-40 bg-[#05070a] border border-slate-700 rounded-lg overflow-hidden relative group">
-                          <span className="absolute top-2 left-2 z-[999] text-[10px] sm:text-[11px] font-bold text-slate-300 px-2 py-1 bg-black/80 border border-slate-800 rounded tracking-wider backdrop-blur pointer-events-none uppercase shadow-lg shadow-black/50 group-hover:text-white transition-colors">{t.nickelLabel}</span>
-                          <TradingViewWidget key="nickel" symbol="CAPITALCOM:NICKEL" />
-                        </div>
-                        <div className="h-40 bg-[#05070a] border border-slate-700 rounded-lg overflow-hidden relative group">
-                           <span className="absolute top-2 left-2 z-[999] text-[10px] sm:text-[11px] font-bold text-slate-300 px-2 py-1 bg-black/80 border border-slate-800 rounded tracking-wider backdrop-blur pointer-events-none uppercase shadow-lg shadow-black/50 group-hover:text-white transition-colors">{t.uraniumLabel}</span>
-                          <TradingViewWidget key="uranium" symbol="AMEX:URA" />
-                        </div>
-                        <div className="h-40 bg-[#05070a] border border-slate-700 rounded-lg overflow-hidden relative group">
-                          <span className="absolute top-2 left-2 z-[999] text-[10px] sm:text-[11px] font-bold text-emerald-400 px-2 py-1 bg-[#051510]/90 border border-emerald-900/50 rounded tracking-wider backdrop-blur pointer-events-none uppercase shadow-lg shadow-emerald-900/30 group-hover:text-emerald-300 transition-colors uppercase">{t.cognexLabel}</span>
-                          <TradingViewWidget key="cognex" symbol="NASDAQ:CGNX" />
-                        </div>
-                        <div className="h-40 bg-[#05070a] border border-slate-700 rounded-lg overflow-hidden flex flex-col justify-center p-4">
-                          <span className="text-[11px] sm:text-xs font-medium text-slate-400 tracking-wider font-sans uppercase mb-2 leading-tight">{t.doomsdayIndex}</span>
-                          <div className="flex items-end justify-between">
-                            <span className="text-xl sm:text-2xl font-bold text-red-500">23:58:30</span>
-                            <span className="flex items-center gap-1 text-xs sm:text-sm font-bold text-red-400">
-                              <TrendingUp className="w-4 h-4" />
-                              -30 SEC
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="lg:col-span-1 bg-[#0a0f18] border border-slate-800 rounded-lg flex flex-col max-h-[400px] overflow-hidden">
-                        <div className="bg-slate-900 border-b border-slate-800 p-3 shrink-0">
-                          <h3 className="text-xs font-bold text-slate-300 tracking-widest flex items-center gap-2" style={{ fontFamily: 'sans-serif', WebkitFontSmoothing: 'antialiased', textShadow: 'none' }}>
-                             <Activity className="w-4 h-4 text-emerald-500" />
-                             {t.marketNews}
-                          </h3>
-                        </div>
-                        <div 
-                           className="flex-1 overflow-y-auto scrollbar-custom p-3 space-y-3"
-                           style={{ maxHeight: '400px', overflowY: 'auto', fontFamily: 'sans-serif', WebkitFontSmoothing: 'antialiased', textShadow: 'none' }}
-                        >
-                           {financeNews.length > 0 ? financeNews.map((news, index) => (
-                             <div key={`finance-${news.id}-${index}`} className="border-l-2 border-emerald-500/50 pl-3 py-1 flex flex-col">
-                                <div className="text-[10px] text-slate-500 mb-1" style={{ fontFamily: 'sans-serif' }}>
-                                  {new Date(news.time).toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute:'2-digit' })} 
-                                  {' | '}{news.location.toUpperCase()}
-                                </div>
-                                <h4 className="text-xs font-bold text-slate-200 leading-snug mb-2">{news.title}</h4>
-                                {(((news.url && news.url !== "#") ? news.url : null) || (news as any).link || (news as any).articleUrl || (news as any).source) && (
-                                  <div className="self-start mt-auto">
-                                    <a href={(((news.url && news.url !== "#") ? news.url : null) || (news as any).link || (news as any).articleUrl || (news as any).source)} target="_blank" rel="noopener noreferrer" className="inline-block text-[9px] bg-red-900/50 hover:bg-red-800/80 px-2 py-1 rounded text-red-200 font-mono transition-colors uppercase">
-                                      {t.accessSource} &rarr;
-                                    </a>
-                                  </div>
-                                )}
-                             </div>
-                           )) : (
-                             <div className="text-xs text-slate-500 text-center mt-10 uppercase" style={{ fontFamily: 'sans-serif' }}>{t.waitingNews}</div>
-                           )}
-                        </div>
-                      </div>
+                    <p className="text-sm text-slate-300 font-mono mb-4 leading-relaxed">{t.logisticsDesc}</p>
+                    <div className="grid gap-4 sm:grid-cols-2">
+                       {visibleEvents.filter(ev => ev.id === 'finance1' || ev.id === 'finance2').map(ev => (
+                         <div key={ev.id} className="p-4 border border-slate-700 bg-slate-800/30 rounded-lg">
+                           <div className="flex justify-between items-center mb-3">
+                             <span className="text-xs font-bold text-blue-400 uppercase tracking-wider">{t.asset}</span>
+                             <span className="text-xs font-mono text-slate-400">{ev.location}</span>
+                           </div>
+                           <h4 className="text-lg font-bold text-white mb-2">{ev.title}</h4>
+                           <p className="text-sm text-slate-400">{ev.description}</p>
+                         </div>
+                       ))}
                     </div>
                   </div>
                 )}
-                
+
                 {activeModal === 'archive' && (
                   <div className="space-y-6">
-                    <p className="text-sm text-slate-300 font-mono mb-4 leading-relaxed">{t.archive} / {t.pastEvents}</p>
-                    <div className="flex flex-col gap-3 max-h-[60vh] pr-2 overflow-y-auto custom-scrollbar">
+                    <p className="text-sm text-slate-300 font-mono mb-6 leading-relaxed">
+                      {t.archiveDesc}
+                    </p>
+                    <div className="space-y-4">
                       {(() => {
-                        const seenTitles = new Set<string>();
-                        const uniqueArchiveEvents = events.filter(ev => {
-                          if (seenTitles.has(ev.title)) return false;
-                          seenTitles.add(ev.title);
-                          return true;
-                        });
-                        return uniqueArchiveEvents.slice(0, 50).map((ev, i) => (
-                          <div key={ev.id + '-' + i} className="flex flex-col md:flex-row md:items-center gap-4 p-4 bg-[#05070a] border border-slate-800 rounded-lg hover:border-slate-600 transition-colors">
-                             <div className="flex items-center gap-3 shrink-0 md:w-56">
-                               <span className="text-xs font-mono text-slate-400">
-                                 {new Date(ev.time).toLocaleDateString()} 
-                                 {' '} 
-                                 {new Date(ev.time).toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute:'2-digit' })}
-                               </span>
-                               <span className="text-[10px] px-2 py-1 rounded border border-slate-700 text-slate-300 bg-slate-800/80 font-bold uppercase whitespace-nowrap">
-                                 {ev.location}
-                               </span>
+                        const allEvents = [...events, ...logisticsEvents];
+                        allEvents.sort((a,b) => new Date(b.time).getTime() - new Date(a.time).getTime());
+                        const recentEvents = allEvents.slice(0, 10);
+                        
+                        return recentEvents.map(ev => (
+                          <div key={ev.id} className="flex flex-col sm:flex-row gap-4 p-4 border border-slate-800 rounded bg-[#05070a]">
+                             <div className="flex flex-col gap-1 min-w-[120px]">
+                               <span className="text-xs text-slate-500 font-mono">{ev.time}</span>
+                               <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{ev.location}</span>
                              </div>
                              <div className="flex flex-col flex-1">
                                <p className="text-sm text-slate-200 font-medium leading-relaxed mb-2">
@@ -2666,50 +2606,43 @@ export default function App() {
                   </div>
                 )}
 
-{activeModal === 'support' && (
-  <div className="space-y-8 flex flex-col items-center justify-center p-8">
-    <div className="text-center space-y-3">
-      <h3 className="text-xl font-bold text-slate-100 uppercase tracking-widest">Fund the Radar</h3>
-      <p className="text-sm text-slate-400 max-w-lg mx-auto">
-        Sensör ağının operasyonel kalması için kripto istihkak (yakıt) desteğinizi iletebilirsiniz.
-      </p>
-    </div>
-    
-    <div className="w-full max-w-md space-y-4">
-      {/* BTC Address Block */}
-      <div className="p-4 bg-[#05070a] border border-slate-800 rounded-lg flex flex-col gap-2 relative group hover:border-[#f7931a]/50 transition-colors">
-        <span className="text-xs font-bold text-[#f7931a] uppercase tracking-wider">Bitcoin (BTC)</span>
-        <div className="flex items-center justify-between gap-3">
-          <span className="text-slate-300 font-mono text-xs sm:text-sm break-all">17xZF4rAa7yPXse4YpTApwiu7MXttmnbY6</span>
-          <button 
-            onClick={() => navigator.clipboard.writeText('17xZF4rAa7yPXse4YpTApwiu7MXttmnbY6')} 
-            className="p-2 bg-slate-800 rounded hover:bg-slate-700 transition-colors shrink-0 text-slate-400 group-hover:text-white" 
-            title="Copy BTC Address"
-          >
-            <Copy className="w-4 h-4" />
-          </button>
-        </div>
-      </div>
+                {activeModal === 'support' && (
+                  <div className="space-y-8 flex flex-col items-center justify-center p-8">
+                    <div className="text-center space-y-3">
+                      <h3 className="text-xl font-bold text-slate-100 uppercase tracking-widest">Fund the Radar</h3>
+                      <p className="text-sm text-slate-400 max-w-lg mx-auto">Sensör ağının operasyonel kalması için kripto istihkak (yakıt) desteğinizi iletebilirsiniz.</p>
+                    </div>
 
-      {/* USDT Address Block */}
-      <div className="p-4 bg-[#05070a] border border-slate-800 rounded-lg flex flex-col gap-2 relative group hover:border-[#26a17b]/50 transition-colors">
-        <span className="text-xs font-bold text-[#26a17b] uppercase tracking-wider">Tether (USDT - TRC20)</span>
-        <div className="flex items-center justify-between gap-3">
-          <span className="text-slate-300 font-mono text-xs sm:text-sm break-all">TWNNbpFjjmM4QsNNGMVqzHEf7ZyaURwRQZ</span>
-          <button 
-            onClick={() => navigator.clipboard.writeText('TWNNbpFjjmM4QsNNGMVqzHEf7ZyaURwRQZ')} 
-            className="p-2 bg-slate-800 rounded hover:bg-slate-700 transition-colors shrink-0 text-slate-400 group-hover:text-white" 
-            title="Copy USDT Address"
-          >
-            <Copy className="w-4 h-4" />
-          </button>
-        </div>
-      </div>
+                    <div className="w-full max-w-md space-y-4">
+                      <div className="p-4 bg-[#05070a] border border-slate-800 rounded-lg flex flex-col gap-2 relative group hover:border-[#f7931a]/50 transition-colors">
+                        <span className="text-xs font-bold text-[#f7931a] uppercase tracking-wider">Bitcoin (BTC)</span>
+                        <div className="flex items-center justify-between gap-3 text-slate-300 font-mono text-sm break-all">
+                          <span className="text-slate-500 italic">Address will be added soon...</span>
+                          <button onClick={() => navigator.clipboard.writeText('TBD')} className="p-2 bg-slate-800 rounded hover:bg-slate-700 transition-colors shrink-0 text-slate-400 group-hover:text-white" title="Copy BTC Address">
+                            <Copy className="w-4 h-4" />
+                          </button>
+                        </div>
+                      </div>
+
+                      <div className="p-4 bg-[#05070a] border border-slate-800 rounded-lg flex flex-col gap-2 relative group hover:border-[#26a17b]/50 transition-colors">
+                        <span className="text-xs font-bold text-[#26a17b] uppercase tracking-wider">Tether (USDT - TRC20)</span>
+                        <div className="flex items-center justify-between gap-3 text-slate-300 font-mono text-sm break-all">
+                          <span className="text-slate-500 italic">Address will be added soon...</span>
+                          <button onClick={() => navigator.clipboard.writeText('TBD')} className="p-2 bg-slate-800 rounded hover:bg-slate-700 transition-colors shrink-0 text-slate-400 group-hover:text-white" title="Copy USDT Address">
+                            <Copy className="w-4 h-4" />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </div>
-  </div>
-  )}
-      </div>
-    </motion.div>
-  </div>
   );
 }
+
+export default App;
