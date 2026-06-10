@@ -2666,42 +2666,45 @@ export default function App() {
                   </div>
                 )}
 
-                {activeModal === 'support' && (
-                  <div className="space-y-8 flex flex-col items-center justify-center p-8">
-                    <div className="text-center space-y-3">
-                      <h3 className="text-xl font-bold text-slate-100 uppercase tracking-widest">Fund the Radar</h3>
-                      <p className="text-sm text-slate-400 max-w-lg mx-auto">Sensör ağının operasyonel kalması için kripto istihkak (yakıt) desteğinizi iletebilirsiniz.</p>
-                    </div>
-
-                    <div className="w-full max-w-md space-y-4">
-                      <div className="p-4 bg-[#05070a] border border-slate-800 rounded-lg flex flex-col gap-2 relative group hover:border-[#f7931a]/50 transition-colors">
-                        <span className="text-xs font-bold text-[#f7931a] uppercase tracking-wider">Bitcoin (BTC)</span>
-                        <div className="flex items-center justify-between gap-3 text-slate-300 font-mono text-sm break-all">
-                          <span className="text-slate-500 italic">Address will be added soon...</span>
-                          <button onClick={() => navigator.clipboard.writeText('TBD')} className="p-2 bg-slate-800 rounded hover:bg-slate-700 transition-colors shrink-0 text-slate-400 group-hover:text-white" title="Copy BTC Address">
-                            <Copy className="w-4 h-4" />
-                          </button>
-                        </div>
-                      </div>
-
-                      <div className="p-4 bg-[#05070a] border border-slate-800 rounded-lg flex flex-col gap-2 relative group hover:border-[#26a17b]/50 transition-colors">
-                        <span className="text-xs font-bold text-[#26a17b] uppercase tracking-wider">Tether (USDT - TRC20)</span>
-                        <div className="flex items-center justify-between gap-3 text-slate-300 font-mono text-sm break-all">
-                          <span className="text-slate-500 italic">Address will be added soon...</span>
-                          <button onClick={() => navigator.clipboard.writeText('TBD')} className="p-2 bg-slate-800 rounded hover:bg-slate-700 transition-colors shrink-0 text-slate-400 group-hover:text-white" title="Copy USDT Address">
-                            <Copy className="w-4 h-4" />
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
+               {activeModal === 'support' && (
+  <div className="space-y-8 flex flex-col items-center justify-center p-8">
+    <div className="text-center space-y-3">
+      <h3 className="text-xl font-bold text-slate-100 uppercase tracking-widest">Fund the Radar</h3>
+      <p className="text-sm text-slate-400 max-w-lg mx-auto">
+        Sensör ağının operasyonel kalması için kripto istihkak (yakıt) desteğinizi iletebilirsiniz.
+      </p>
     </div>
-  );
-}
+    
+    <div className="w-full max-w-md space-y-4">
+      {/* BTC Address Block */}
+      <div className="p-4 bg-[#05070a] border border-slate-800 rounded-lg flex flex-col gap-2 relative group hover:border-[#f7931a]/50 transition-colors">
+        <span className="text-xs font-bold text-[#f7931a] uppercase tracking-wider">Bitcoin (BTC)</span>
+        <div className="flex items-center justify-between gap-3">
+          <span className="text-slate-300 font-mono text-xs sm:text-sm break-all">17xZF4rAa7yPXse4YpTApwiu7MXttmnbY6</span>
+          <button 
+            onClick={() => navigator.clipboard.writeText('17xZF4rAa7yPXse4YpTApwiu7MXttmnbY6')} 
+            className="p-2 bg-slate-800 rounded hover:bg-slate-700 transition-colors shrink-0 text-slate-400 group-hover:text-white" 
+            title="Copy BTC Address"
+          >
+            <Copy className="w-4 h-4" />
+          </button>
+        </div>
+      </div>
 
+      {/* USDT Address Block */}
+      <div className="p-4 bg-[#05070a] border border-slate-800 rounded-lg flex flex-col gap-2 relative group hover:border-[#26a17b]/50 transition-colors">
+        <span className="text-xs font-bold text-[#26a17b] uppercase tracking-wider">Tether (USDT - TRC20)</span>
+        <div className="flex items-center justify-between gap-3">
+          <span className="text-slate-300 font-mono text-xs sm:text-sm break-all">TWNNbpFjjmM4QsNNGMVqzHEf7ZyaURwRQZ</span>
+          <button 
+            onClick={() => navigator.clipboard.writeText('TWNNbpFjjmM4QsNNGMVqzHEf7ZyaURwRQZ')} 
+            className="p-2 bg-slate-800 rounded hover:bg-slate-700 transition-colors shrink-0 text-slate-400 group-hover:text-white" 
+            title="Copy USDT Address"
+          >
+            <Copy className="w-4 h-4" />
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+)}
